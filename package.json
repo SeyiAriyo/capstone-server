@@ -7,12 +7,13 @@
     "seed": "psql -U dunder_mifflin -d recipe-server -f ./seeds/seed.recipe_tables.sql",
     "migrate": "postgrator --config postgrator-config.js",
     "migrate:test": "env NODE_ENV=test npm run migrate",
-    "migrate:production": "env SSL=true DATABASE_URL=$(heroku config:get DATABASE_URL) npm run migrate",
+    "migrate:production": "heroku run npm run migrate",
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "mocha --require test/setup.js",
     "predeploy": "npm audit && npm run migrate:production",
-    "deploy": "git push heroku master"
+    "deploy": "git push heroku master",
+    "postdeploy": "npm run migrate:production"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +28,7 @@
     "knex": "^0.20.9",
     "morgan": "^1.9.1",
     "pg": "^7.18.1",
+    "postgrator": "^3.2.0",
     "postgrator-cli": "^3.3.0",
     "xss": "^1.0.6"
   },
