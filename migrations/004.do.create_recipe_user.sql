@@ -4,3 +4,7 @@ create table recipe_user (
   nickname text,
   password text not null
 );
+
+alter table ingredients
+  add column
+    user_id integer references recipe_user(id) on delete set null;

@@ -22,7 +22,7 @@ RecipesRouter
       .catch(next)
     }
     else if(keyword === '' && filter !== 'All') {
-      RecipesService.getRecipeByRecipeType(req.app.get('db'), filter)
+      RecipesService.getRecipeByIngredient(req.app.get('db'), filter)
       .then(recipes => {
       res
         .status(200)
@@ -31,7 +31,7 @@ RecipesRouter
       .catch(next)
     }
     else if(keyword !== '' && filter !== 'All') {
-      RecipesService.getRecipeByRecipeTypeAndName(req.app.get('db'), keyword, filter)
+      RecipesService.getRecipeByIngredientAndName(req.app.get('db'), keyword, filter)
       .then(recipes => {
       res
         .status(200)
