@@ -11,7 +11,7 @@
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "mocha --require test/setup.js",
-    "predeploy": "npm audit && npm run migrate:production",
+    "predeploy": "npm run migrate:production",
     "deploy": "git push heroku master",
     "postdeploy": "npm run migrate:production"
   },
@@ -21,12 +21,14 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dot-prop": "^5.2.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.9",
     "morgan": "^1.9.1",
+    "npm": "^6.14.7",
     "pg": "^7.12.0",
     "postgrator": "^3.2.0",
     "postgrator-cli": "^3.3.0",
