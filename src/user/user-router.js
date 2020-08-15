@@ -33,7 +33,7 @@ userRouter.post('/', jsonBodyParser, (req, res, next) => {
               .status(201)
               .location(
                 path.posix.join(
-                  `https://blooming-reef-26525.herokuapp.com`,
+                  `https://vast-plains-52676.herokuapp.com`,
                   `/cabinet/${user.id}`
                 )
               )

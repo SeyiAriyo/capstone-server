@@ -28,15 +28,15 @@ app.use('/auth', AuthRouter);
 app.use('/user', UserRouter);
 app.use('/favorites', FavoritesRouter);
 
-app.use((error, req, res, next) => {
-  let response;
-  if (NODE_ENV === 'production') {
-    response = { error: 'Internal Service Error' };
-  } else {
-    console.log(error);
-    response = { message: error.message, error };
-  }
-  res.status(500).json(response);
-});
+// app.use((error, req, res, next) => {
+//   let response;
+//   if (NODE_ENV === 'production') {
+//     response = { error: 'Internal Service Error' };
+//   } else {
+//     console.log(error);
+//     response = { message: error.message, error };
+//   }
+//   res.status(500).json(response);
+// });
 
 module.exports = app;
