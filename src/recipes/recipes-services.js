@@ -87,7 +87,49 @@ const RecipesService = {
       .from('recipes')
       .where('id', id)
       .first()
-  }
+  },
+  getUserRceipeById(db, user_id, id) {
+    return db
+      .select("*")
+      .from("user_recipes")
+      .where(
+        db.raw(`user_recipes.user_id=${user_id}
+      and user_recipes.id=${id}`)
+      )
+      .first();
+  },
+
+  postNewRecipe(db, newRecipe) {
+    return db
+      .insert(newRecipe)
+      .into("user_recipes")
+      .returning("*")
+      .then(([recipe]) => recipe);
+  },
+
+  deleteUserRecipe(db, user_id, id) {
+    return db("user_recipes")
+      .where(
+        db.raw(`user_id=${user_id}
+        and id=${id}`)
+      )
+      .delete();
+  },
+
+  getUsermadeRecipesByUserId(db, user_id) {
+    return db
+      .select(
+        "user_recipes.id",
+        "user_recipes.recipe_name",
+        "user_recipes.recipe_img",
+        "user_recipes.recipe_ingredients",
+        "recipe_prep",
+        "ingredient_type.ingredient_cat"
+      )
+      .from("user_recipes")
+      .join("ingredient_type", "user_recipes.ingredient_id", "ingredient_type.id")
+      .where({ user_id });
+  },
 }
 
 module.exports = RecipesService
