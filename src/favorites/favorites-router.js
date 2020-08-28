@@ -3,7 +3,7 @@ const FavoritesService = require('./favorites-services')
 const { requireAuth } = require('../middleware/jwt-auth')
 
 const favoritesRouter = express.Router()
-bodyParser = express.json()
+const bodyParser = express.json()
 
 favoritesRouter
 .route('/')
